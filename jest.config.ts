@@ -2,6 +2,7 @@ import type { Config } from "jest";
 
 const config: Config = {
   verbose: true,
+  rootDir: "./",
   roots: ["<rootDir>/src"],
   testMatch: ["**/__tests__/**/*.+(ts|js)", "**/?(*.)+(spec|test).+(ts|js)"],
   transform: {
