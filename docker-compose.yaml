@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  kgalleryapi:
+    build:
+      context: .
+    volumes:
+      - ./:/usr/src
+    container_name: kgallery-api
+    ports:
+      - "3000:3000"
+    networks:
+      - kgallery
+  kgallerydb:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+    volumes:
+      - ./postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - kgallery
+networks:
+  kgallery:
+    driver: bridge
