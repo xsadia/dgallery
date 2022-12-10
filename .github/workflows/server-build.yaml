@@ -1,0 +1,17 @@
+name: Server build
+
+on:
+  push:
+    branches-ignore:
+      - "main"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v3
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.15'
+      - run: yarn build
+
