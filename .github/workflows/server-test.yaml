@@ -13,4 +13,5 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16.15'
+      - run: yarn
       - run: yarn test
