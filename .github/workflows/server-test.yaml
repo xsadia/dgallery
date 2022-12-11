@@ -14,9 +14,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "16.15"
-      name: Install
-      run: yarn
-      name: Build
-      run: |
-        cp ./.env.ci ./.env
-        yarn test
+     - name: Install
+        run: yarn
+     - name: Build
+        run: |
+          cp ./.env.ci ./.env
+          yarn test
