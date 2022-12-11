@@ -5,7 +5,7 @@ services:
     build:
       context: .
     volumes:
-      - ./:/usr/src
+      - ./:/app
     container_name: kgallery-api
     ports:
       - "3000:3000"
@@ -14,12 +14,15 @@ services:
   kgallerydb:
     image: postgres:15
     environment:
-      - POSTGRES_USER=root
+      - PGHOST=postgres
       - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=root
     volumes:
       - ./postgres:/data/postgres
     ports:
       - "5432:5432"
+    expose:
+      - 5432
     networks:
       - kgallery
 networks:

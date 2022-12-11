@@ -1,6 +1,6 @@
 FROM node:16.15.0
 
-WORKDIR /usr/src
+WORKDIR /app
 
 COPY . .
 
@@ -8,4 +8,4 @@ RUN yarn
 
 EXPOSE 3000
 
-CMD ["yarn", "dev"]
+CMD ["/bin/sh", "-c", "sleep 20 && yarn database:migrate init && yarn database:generate && yarn dev"]

@@ -1,8 +1,11 @@
 import { Profile, Strategy } from "passport-discord";
 import { VerifyCallback } from "passport-oauth2";
 import { config } from "dotenv";
+import { PrismaClient } from "@prisma/client";
 import passport from "koa-passport";
 config();
+
+const prisma = new PrismaClient();
 
 passport.use(
   new Strategy(
@@ -18,7 +21,30 @@ passport.use(
       profile: Profile,
       done: VerifyCallback
     ) => {
-      console.log({ accessToken, refreshToken, profile });
+      const { id: discordId, email, username, guilds } = profile;
+      console.log(guilds);
+      try {
+        const user = await prisma.user.upsert({
+          where: {
+            discordId,
+          },
+          create: {
+            discordId,
+            email: email!,
+            username,
+            accessToken,
+            refreshToken,
+          },
+          update: {
+            accessToken,
+            refreshToken,
+          },
+        });
+        return done(null, user);
+      } catch (err: any) {
+        console.log(`[OAuth]: ${err}`);
+        return done(err, undefined);
+      }
     }
   )
 );
