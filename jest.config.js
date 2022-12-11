@@ -1,12 +1,9 @@
-import type { Config } from "jest";
-
-const config: Config = {
+module.exports = {
   verbose: true,
+  rootDir: "./",
   roots: ["<rootDir>/src"],
   testMatch: ["**/__tests__/**/*.+(ts|js)", "**/?(*.)+(spec|test).+(ts|js)"],
   transform: {
     "^.+\\.(ts|tsx)$": "ts-jest",
   },
 };
-
-export default config;
