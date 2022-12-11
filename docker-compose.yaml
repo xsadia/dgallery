@@ -14,11 +14,12 @@ services:
   kgallerydb:
     image: postgres:15
     environment:
-      - PGHOST=postgres
+      - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=root
-    volumes:
-      - ./postgres:/data/postgres
+      - POSTGRES_DB=kgallery
+    # volumes:
+    # - ./postgres:/var/lib/postgresql
+    container_name: kgallery-db
     ports:
       - "5432:5432"
     expose:

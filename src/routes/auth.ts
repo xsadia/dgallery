@@ -1,18 +1,22 @@
-import Router from "@koa/router";
-import passport from "koa-passport";
+import { Router } from "express";
+import passport from "passport";
 
-const router = new Router({
-  prefix: "/auth",
-});
+const router = Router();
 
-router.get("/discord", passport.authenticate("discord"), (ctx) => {
-  ctx.status = 200;
-});
+router.get(
+  "/discord",
+  passport.authenticate("discord"),
+  (request, response) => {
+    return response.status(200);
+  }
+);
 
-router.get("/discord/redirect", passport.authenticate("discord"), (ctx) => {
-  ctx.body = {
-    message: "success",
-  };
-});
+router.get(
+  "/discord/redirect",
+  passport.authenticate("discord"),
+  (request, response) => {
+    return response.json({ message: "success" });
+  }
+);
 
 export default router;

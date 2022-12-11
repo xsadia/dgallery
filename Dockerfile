@@ -8,4 +8,4 @@ RUN yarn
 
 EXPOSE 3000
 
-CMD ["/bin/sh", "-c", "sleep 20 && yarn database:migrate init && yarn database:generate && yarn dev"]
+CMD ["/bin/sh", "-c", "sleep 20 && yarn dev"]

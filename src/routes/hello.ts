@@ -1,11 +1,9 @@
-import Router from "@koa/router";
+import { Router } from "express";
 
-const router = new Router({
-  prefix: "/hello",
-});
+const router = Router();
 
-router.get("/", (ctx) => {
-  ctx.body = { hello: "world" };
+router.get("/", (request, response) => {
+  return response.json({ hello: "world" });
 });
 
 export default router;
